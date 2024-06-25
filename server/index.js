@@ -21,6 +21,13 @@ mongoose.connect("mongodb://127.0.0.1:27017/crud", {
 //     next();
 // }
 
+const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+  };
+
 
 // Define CORS options
 const corsOptions = {
@@ -35,34 +42,34 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 // Routes
-app.get("/" , (req, res) => {
+app.get("/" , config,  (req, res) => {
     UserModel.find({})
         .then(users => res.json(users))
         .catch(err => res.json(err));
 });
 
-app.get("/getUser/:id" , (req, res) => {
+app.get("/getUser/:id" , config,  (req, res) => {
     const id = req.params.id;
     UserModel.findById({ _id: id })
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-app.put("/updateUser/:id" , (req, res) => {
+app.put("/updateUser/:id" , config,  (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndUpdate({ _id: id }, { name: req.body.name, email: req.body.email, age: req.body.age }, { new: true })
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-app.delete("/deleteUser/:id" , (req, res) => {
+app.delete("/deleteUser/:id" , config,  (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndDelete({ _id: id })
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
 
-app.post("/createUser" , (req, res) => {
+app.post("/createUser" , config,  (req, res) => {
     UserModel.create(req.body)
         .then(user => res.json(user))
         .catch(err => res.json(err));
