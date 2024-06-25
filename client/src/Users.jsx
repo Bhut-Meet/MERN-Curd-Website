@@ -7,7 +7,7 @@ export default function Users() {
     const API = `https://mern-curd-website.onrender.com`;
 
     useEffect(() => {
-        axios.get(`${API}/`)
+        axios.get(`${API}`)
             .then(result => setUsers(result.data))
             .catch(err => console.log(err));
     }, []);
