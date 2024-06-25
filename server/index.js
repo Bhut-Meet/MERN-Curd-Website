@@ -52,39 +52,43 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
-app.get(corsMiddleware,"/"  ,  (req, res) => {
+app.get("/"  ,  corsMiddleware,  (req, res) => {
     UserModel.find({})
         .then(users => res.json(users))
         .catch(err => res.json(err));
 });
 
-app.get(corsMiddleware ,"/getUser/:id"  ,  (req, res) => {
+app.get("/getUser/:id"  ,  corsMiddleware,  (req, res) => {
     const id = req.params.id;
     UserModel.findById({ _id: id })
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-app.put(corsMiddleware, "/updateUser/:id"  ,  (req, res) => {
+app.put("/updateUser/:id"  ,  corsMiddleware,  (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndUpdate({ _id: id }, { name: req.body.name, email: req.body.email, age: req.body.age }, { new: true })
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-app.delete(corsMiddleware, "/deleteUser/:id"  ,   (req, res) => {
+app.delete("/deleteUser/:id"  , corsMiddleware,   (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndDelete({ _id: id })
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
 
-app.post(corsMiddleware , "/createUser"  ,   (req, res) => {
+app.post("/createUser"  , corsMiddleware,   (req, res) => {
     UserModel.create(req.body)
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-app.listen(3001, () => {
-    console.log("Server is running on port 3001")
-})
+const PORT =process.env.PORT || 3001;
+connectDb().then(()=>{
+    app.listen(PORT, () => {
+        console.log('server is running on port ' + PORT);
+        // console.log(`server is running on port: ${PORT}`);
+    });
+});
