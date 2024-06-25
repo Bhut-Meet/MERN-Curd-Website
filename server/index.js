@@ -11,7 +11,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/crud")
 
 const corsOptions={
     // origin: ["http://localhost:5173"],
-    origin: ["http://localhost:5173", "mern-curd-website.vercel.app"],
+    origin: "https://mern-curd-website.vercel.app",
     // origin: "https://websitedevelopmentservices.vercel.app",
     // origin:"https://websitedevelopmentservices.vercel.app", // Replace with allowed origins from environment variable or default to Vercel domain
     methods: ["GET", "HEAD","PUT","PATCH","POST","DELETE"],
