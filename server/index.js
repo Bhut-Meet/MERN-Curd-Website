@@ -21,56 +21,57 @@ mongoose.connect("mongodb://127.0.0.1:27017/crud", {
 //     next();
 // }
 
-const config = {
-    headers: {
-      "Access-Control-Allow-Origin": "https://mern-curd-website.vercel.app",
-      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-    }
-  };
+app.use(
+    cors({
+    origin: "https://lvw.onrender.com", // Allow requests only from this origin
+    methods: "GET,HEAD, PUT, PATCH, POST, DELETE",
+    credentials: true,
+    })
+    );
 
 
 // Define CORS options
-const corsOptions = {
-    origin: "https://mern-curd-website.vercel.app", // Replace with your Vercel domain
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    credentials: true,
-};
+// const corsOptions = {
+//     origin: "https://mern-curd-website.vercel.app", // Replace with your Vercel domain
+//     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+//     credentials: true,
+// };
 
 
 
-app.use(cors(corsOptions));
+// app.use(cors());
 
 app.use(express.json());
 
 // Routes
-app.get("/" , config,  (req, res) => {
+app.get("/"  ,  (req, res) => {
     UserModel.find({})
         .then(users => res.json(users))
         .catch(err => res.json(err));
 });
 
-app.get("/getUser/:id" , config,  (req, res) => {
+app.get("/getUser/:id"  ,  (req, res) => {
     const id = req.params.id;
     UserModel.findById({ _id: id })
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-app.put("/updateUser/:id" , config,  (req, res) => {
+app.put("/updateUser/:id"  ,  (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndUpdate({ _id: id }, { name: req.body.name, email: req.body.email, age: req.body.age }, { new: true })
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-app.delete("/deleteUser/:id" , config,  (req, res) => {
+app.delete("/deleteUser/:id"  ,  (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndDelete({ _id: id })
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
 
-app.post("/createUser" , config,  (req, res) => {
+app.post("/createUser"  ,  (req, res) => {
     UserModel.create(req.body)
         .then(user => res.json(user))
         .catch(err => res.json(err));
