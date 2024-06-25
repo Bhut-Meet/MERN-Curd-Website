@@ -18,8 +18,8 @@ function corsMiddleware(req,res) {
     // headers("Access-Control-Allow-Origin", "https://mern-curd-website.vercel.app");
     // headers( "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
 
-    res.setHeader('Access-Control-Allow-Origin', 'https://mern-curd-website.vercel.app'); // Replace with your Vercel domain
-    res.setHeader('Access-Control-Allow-Methods', "GET", "HEAD","PUT","PATCH","POST","DELETE"); 
+    res.setheader('Access-Control-Allow-Origin', 'https://mern-curd-website.vercel.app'); // Replace with your Vercel domain
+    res.setheader('Access-Control-Allow-Methods', "GET", "HEAD","PUT","PATCH","POST","DELETE"); 
       
   }
 
