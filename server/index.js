@@ -21,13 +21,21 @@ mongoose.connect("mongodb://127.0.0.1:27017/crud", {
 //     next();
 // }
 
-app.use(
-    cors({
-    origin: "https://lvw.onrender.com", // Allow requests only from this origin
-    methods: "GET,HEAD, PUT, PATCH, POST, DELETE",
-    credentials: true,
-    })
-    );
+function corsMiddleware(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'https://mern-curd-website.vercel.app'); // Replace with your Vercel domain
+    res.setHeader('Access-Control-Allow-Methods', "GET", "HEAD","PUT","PATCH","POST","DELETE"); // Common HTTP methods
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Common allowed headers
+    next();
+  }
+
+const corsOptions={
+    // origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "https://mern-curd-website.vercel.app"],
+    // origin: "https://websitedevelopmentservices.vercel.app",
+    // origin:"https://websitedevelopmentservices.vercel.app", // Replace with allowed origins from environment variable or default to Vercel domain
+    methods: ["GET", "HEAD","PUT","PATCH","POST","DELETE"],
+    Credential:true,
+}
 
 
 // Define CORS options
@@ -39,7 +47,7 @@ app.use(
 
 
 
-// app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
