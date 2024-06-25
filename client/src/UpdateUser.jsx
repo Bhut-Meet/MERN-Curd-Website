@@ -10,8 +10,10 @@ export default function UpdateUser() {
     const [password,setPassword] = useState()
     const navigate = useNavigate()
 
+    const API = `https://mernbackend-2cyi.onrender.com`;
+
     useEffect(()=> {
-        axios.get('http://localhost:3001/getUser/'+id)
+        axios.get(`${API}/getUser/`+id)
         .then(result => {
             console.log(result)
             const {name,email,age,password} = result.data
@@ -27,7 +29,7 @@ export default function UpdateUser() {
 
     const Update = (e) =>{
         e.preventDefault();
-        axios.put("http://localhost:3001/updateUser/"+id , {name, email, age})
+        axios.put(`${API}/updateUser/`+id , {name, email, age})
         .then(result => {
             console.log(result)
             navigate('/')

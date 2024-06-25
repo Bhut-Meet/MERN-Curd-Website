@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 
 export default function Users() {
     const [users, setUsers] = useState([]);
+    const API = `https://mernbackend-2cyi.onrender.com`;
 
     useEffect(() => {
-        axios.get('http://localhost:3001')
+        axios.get(`${API}`)
             .then(result => setUsers(result.data))
             .catch(err => console.log(err));
     }, []);
 
     const handleDelete = (id) => {
-        axios.delete("http://localhost:3001/deleteUser/" + id)
+        axios.delete(`${API}/deleteUser/` + id)
             .then(res => {
                 console.log(res);
                 window.location.reload();
