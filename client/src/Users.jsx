@@ -43,9 +43,9 @@ export default function Users() {
         if (users.length === 0) {
             return (
                 <div className="container-fluid">
-                    <div className="row justify-content-center mt-3">
-                        <div className='col-md-8'>
-                            <div className='card'>
+                    <div className="row justify-content-center mt-3 ">
+                        <div className='col-md-8 '>
+                            <div className='card mb-4'>
                                 <div className='card-header bg-primary text-white'>
                                     <h5 className='card-title'>User Management</h5>
                                 </div>
@@ -56,13 +56,16 @@ export default function Users() {
                                     </div>
                                 </div>
                             </div>
+                    <Link  to="https://github.com/Bhut-Meet/MERN-Curd-Website"><button type="button" className="btn btn-primary">Project Code</button></Link>
                         </div>
                     </div>
+                    {/* <Link to="https://github.com/Bhut-Meet/MERN-Curd-Website">Project Code</Link> */}
                 </div>
             );
         }
     
         return (
+            <>
             <div className="container-fluid">
                 <div className="row justify-content-center mt-3">
                     <div className='col-md-8'>
@@ -104,6 +107,7 @@ export default function Users() {
                     </div>
                 </div>
             </div>
+            </>
         );
     }
 
