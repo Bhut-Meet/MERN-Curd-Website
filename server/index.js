@@ -13,10 +13,13 @@ mongoose.connect("mongodb://127.0.0.1:27017/crud")
 if(process.env.MONGODB_URI){
     mongodbUrl=process.env.MONGODB_URI;
     }
-function corsMiddleware(req, res,) {
+function corsMiddleware() {
 
-    headers("Access-Control-Allow-Origin", "https://mern-curd-website.vercel.app");
-    headers( "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
+    // headers("Access-Control-Allow-Origin", "https://mern-curd-website.vercel.app");
+    // headers( "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
+
+    res.setHeader('Access-Control-Allow-Origin', 'https://mern-curd-website.vercel.app'); // Replace with your Vercel domain
+    res.setHeader('Access-Control-Allow-Methods', "GET", "HEAD","PUT","PATCH","POST","DELETE"); 
       
   }
 
