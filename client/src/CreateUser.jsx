@@ -13,7 +13,13 @@ export default function CreateUser() {
 
     const Submit = (e) =>{
         e.preventDefault();
-        axios.post(`${API}/createUser`, {name, email, age,password})
+        axios.post(`${API}/createUser`, {name, email, age,password},
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }
+        )
         .then(result => {
             console.log(result)
             navigate('/')
