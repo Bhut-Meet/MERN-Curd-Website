@@ -23,7 +23,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/crud", {
 
 const config = {
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "https://mern-curd-website.vercel.app",
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
     }
   };
@@ -37,9 +37,10 @@ const corsOptions = {
 };
 
 
-app.use(express.json());
 
 app.use(cors(corsOptions));
+
+app.use(express.json());
 
 // Routes
 app.get("/" , config,  (req, res) => {
