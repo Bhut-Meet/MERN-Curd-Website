@@ -22,36 +22,45 @@ export default function Users() {
     }
 
     return (
-        <div className="d-flex vh-auto bg-primary justify-content-center align-items-center">
-            <div className='w-50 bg-white rounded p-3 m-3'>
-                <Link to="/create" className='btn btn-success mb-3'>Add user</Link>
-                <table className='table table-dark text-center'>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Age</th>
-                            <th>Password</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            users.map((user) => (
-                                <tr key={user._id}>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.age}</td>
-                                    <td>{user.password}</td> {/* Placeholder for password */}
-                                    <td>
-                                        <Link to={`/update/${user._id}`} className='btn btn-success'>Update</Link> &nbsp;
-                                        <button className='btn btn-danger' onClick={() => handleDelete(user._id)}>Delete</button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
+        <div className="container-fluid">
+            <div className="row justify-content-center mt-3">
+                <div className='col-md-8'>
+                    <div className='card'>
+                        <div className='card-header bg-primary text-white'>
+                            <h5 className='card-title'>User Management</h5>
+                        </div>
+                        <div className='card-body'>
+                            <Link to="/create" className='btn btn-success mb-3'>Add User</Link>
+                            <div className='table-responsive'>
+                                <table className='table table-dark table-bordered table-striped text-center'>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Age</th>
+                                            <th>Password</th> {/* Placeholder for password */}
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {users.map((user) => (
+                                            <tr key={user._id}>
+                                                <td>{user.name}</td>
+                                                <td>{user.email}</td>
+                                                <td>{user.age}</td>
+                                                <td>{user.password}</td> {/* Placeholder for password */}
+                                                <td>
+                                                    <Link to={`/update/${user._id}`} className='btn btn-success btn-sm me-2'>Update</Link>
+                                                    <button className='btn btn-danger btn-sm' onClick={() => handleDelete(user._id)}>Delete</button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

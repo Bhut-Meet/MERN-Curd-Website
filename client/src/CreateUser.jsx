@@ -11,7 +11,7 @@ export default function CreateUser() {
 
     const API = `https://mern-curd-website.onrender.com`;
 
-    const Submit = (e) =>{
+    const handleSubmit = (e) =>{
         e.preventDefault();
         axios.post(`${API}/createUser`, {name, email, age,password},
             {
@@ -28,29 +28,37 @@ export default function CreateUser() {
     }
 
   return (
-    <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
-        <div className='w-50 bg-white rounded p-3'>
-            <form onSubmit={Submit}>
-                <h2>Add User</h2>
-                <div className='mb-2'>
-                    <label htmlFor="">Name</label>
-                    <input type="text" placeholder='Enter Name' className='form-control' onChange={(e) => setName(e.target.value)} />
+    <div className="container-fluid">
+    <div className="row justify-content-center mt-5">
+        <div className="col-lg-6 col-md-8 col-sm-10">
+            <div className="card">
+                <div className="card-header bg-primary text-white">
+                    <h2 className="card-title">Add User</h2>
                 </div>
-                <div className='mb-2'>
-                    <label htmlFor="">Email</label>
-                    <input type="text" placeholder='Enter Email' className='form-control' onChange={(e) => setEmail(e.target.value)} />
+                <div className="card-body">
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label htmlFor="name" className="form-label">Name</label>
+                            <input type="text" id="name" className="form-control" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="email" className="form-label">Email</label>
+                            <input type="email" id="email" className="form-control" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="age" className="form-label">Age</label>
+                            <input type="number" id="age" className="form-control" placeholder="Enter Age" value={age} onChange={(e) => setAge(e.target.value)} />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="password" className="form-label">Password</label>
+                            <input type="password" id="password" className="form-control" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </div>
+                        <button type="submit" className="btn btn-success">Submit</button>
+                    </form>
                 </div>
-                <div className='mb-2'>
-                    <label htmlFor="">Age</label>
-                    <input type="text" placeholder='Enter Age' className='form-control' onChange={(e) => setAge(e.target.value)} />
-                </div>
-                <div className='mb-2'>
-                    <label htmlFor="">Password</label>
-                    <input type="text" placeholder='Enter Password' className='form-control' onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <button className='btn btn-success'>Submit</button>
-            </form>
+            </div>
         </div>
     </div>
+</div>
   )
 }
