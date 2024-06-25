@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Users() {
     const [users, setUsers] = useState([]);
-    const API = `https://mernbackend-2cyi.onrender.com`;
+    const API = `https://mern-curd-website.onrender.com`;
 
     useEffect(() => {
         axios.get(`${API}`)

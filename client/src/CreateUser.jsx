@@ -9,8 +9,8 @@ export default function CreateUser() {
     const [password,setPassword] = useState()
     const navigate = useNavigate()
 
-    const API = `https://mernbackend-2cyi.onrender.com`;
-    
+    const API = `https://mern-curd-website.onrender.com`;
+
     const Submit = (e) =>{
         e.preventDefault();
         axios.post(`${API}/createUser`, {name, email, age,password})

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express')
 const mongoose = require('mongoose')
 const cors= require('cors')
@@ -9,7 +10,9 @@ app.use(express.json())
 // Connect to MongoDB database
 mongoose.connect("mongodb://127.0.0.1:27017/crud")
 
-
+if(process.env.MONGODB_URI){
+    mongodbUrl=process.env.MONGODB_URI;
+    }
 function corsMiddleware(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'https://mern-curd-website.vercel.app'); // Replace with your Vercel domain
     res.setHeader('Access-Control-Allow-Methods', "GET", "HEAD","PUT","PATCH","POST","DELETE"); // Common HTTP methods

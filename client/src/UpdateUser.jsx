@@ -10,7 +10,7 @@ export default function UpdateUser() {
     const [password,setPassword] = useState()
     const navigate = useNavigate()
 
-    const API = `https://mernbackend-2cyi.onrender.com`;
+    const API = `https://mern-curd-website.onrender.com`;
 
     useEffect(()=> {
         axios.get(`${API}/getUser/`+id)
