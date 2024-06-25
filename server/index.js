@@ -17,7 +17,7 @@ function corsMiddleware(req, res, next) {
     next();
   }
 
-  app.use(cors(corsMiddleware))
+
 
 const corsOptions={
     // origin: ["http://localhost:5173"],
@@ -29,6 +29,7 @@ const corsOptions={
 }
 
 app.use(cors(corsOptions));
+app.use(cors(corsMiddleware))
 
 app.get("/", (req,res) => {
     UserModel.find({})
