@@ -15,8 +15,8 @@ if(process.env.MONGODB_URI){
     }
 function corsMiddleware(req, res,) {
 
-    res.headers("Access-Control-Allow-Origin", "https://mern-curd-website.vercel.app");
-    res.headers( "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
+    headers("Access-Control-Allow-Origin", "https://mern-curd-website.vercel.app");
+    headers( "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
       
   }
 
