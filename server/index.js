@@ -52,34 +52,34 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
-app.get("/"  ,  corsMiddleware,  (req, res) => {
+app.get(corsMiddleware,"/"  ,  (req, res) => {
     UserModel.find({})
         .then(users => res.json(users))
         .catch(err => res.json(err));
 });
 
-app.get("/getUser/:id"  ,  corsMiddleware,  (req, res) => {
+app.get(corsMiddleware ,"/getUser/:id"  ,  (req, res) => {
     const id = req.params.id;
     UserModel.findById({ _id: id })
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-app.put("/updateUser/:id"  ,  corsMiddleware,  (req, res) => {
+app.put(corsMiddleware, "/updateUser/:id"  ,  (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndUpdate({ _id: id }, { name: req.body.name, email: req.body.email, age: req.body.age }, { new: true })
         .then(user => res.json(user))
         .catch(err => res.json(err));
 });
 
-app.delete("/deleteUser/:id"  , corsMiddleware,   (req, res) => {
+app.delete(corsMiddleware, "/deleteUser/:id"  ,   (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndDelete({ _id: id })
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
 
-app.post("/createUser"  , corsMiddleware,   (req, res) => {
+app.post(corsMiddleware , "/createUser"  ,   (req, res) => {
     UserModel.create(req.body)
         .then(user => res.json(user))
         .catch(err => res.json(err));
