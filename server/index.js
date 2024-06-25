@@ -8,8 +8,8 @@ const app = express();
 
 // Connect to MongoDB database
 mongoose.connect("mongodb://127.0.0.1:27017/crud", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
 });
 
 // Define CORS options
