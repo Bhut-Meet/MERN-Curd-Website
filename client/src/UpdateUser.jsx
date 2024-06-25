@@ -27,7 +27,7 @@ export default function UpdateUser() {
     },[])
 
 
-    const Update = (e) =>{
+    const handleUpdate = (e) =>{
         e.preventDefault();
         axios.put(`${API}/updateUser/`+id , {name, email, age})
         .then(result => {
@@ -39,29 +39,37 @@ export default function UpdateUser() {
 
 
   return (
-    <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
-        <div className='w-50 bg-white rounded p-3'>
-            <form onSubmit={Update}>
-                <h2>Update User</h2>
-                <div className='mb-2'>
-                    <label htmlFor="">Name</label>
-                    <input type="text" placeholder='Enter Name' className='form-control' value={name} onChange={(e) => setName(e.target.value)} />
+    <div className="container-fluid">
+    <div className="row justify-content-center mt-5">
+        <div className="col-lg-6 col-md-8 col-sm-10">
+            <div className="card">
+                <div className="card-header bg-primary text-white">
+                    <h2 className="card-title">Update User</h2>
                 </div>
-                <div className='mb-2'>
-                    <label htmlFor="">Email</label>
-                    <input type="text" placeholder='Enter Email' className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} />
+                <div className="card-body">
+                    <form onSubmit={handleUpdate}>
+                        <div className="mb-3">
+                            <label htmlFor="name" className="form-label">Name</label>
+                            <input type="text" id="name" className="form-control" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="email" className="form-label">Email</label>
+                            <input type="email" id="email" className="form-control" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="age" className="form-label">Age</label>
+                            <input type="number" id="age" className="form-control" placeholder="Enter Age" value={age} onChange={(e) => setAge(e.target.value)} />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="password" className="form-label">Password</label>
+                            <input type="password" id="password" className="form-control" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </div>
+                        <button type="submit" className="btn btn-success">Update</button>
+                    </form>
                 </div>
-                <div className='mb-2'>
-                    <label htmlFor="">Age</label>
-                    <input type="text" placeholder='Enter Age' className='form-control' value={age} onChange={(e) => setAge(e.target.value)} />
-                </div>
-                <div className='mb-2'>
-                    <label htmlFor="">password</label>
-                    <input type="text" placeholder='Enter password' className='form-control' value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <button className='btn btn-success'>Update</button>
-            </form>
+            </div>
         </div>
     </div>
+</div>
   )
 } 
