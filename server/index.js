@@ -4,18 +4,20 @@ const cors= require('cors')
 const UserModel = require('./models/Users')
 
 const app = express()
-app.use(cors(corsMiddleware))
+
 app.use(express.json())
 // Connect to MongoDB database
 mongoose.connect("mongodb://127.0.0.1:27017/crud")
 
 
 function corsMiddleware(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://websitedevelopmentservices.vercel.app'); // Replace with your Vercel domain
+    res.setHeader('Access-Control-Allow-Origin', 'https://mern-curd-website.vercel.app'); // Replace with your Vercel domain
     res.setHeader('Access-Control-Allow-Methods', "GET", "HEAD","PUT","PATCH","POST","DELETE"); // Common HTTP methods
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Common allowed headers
     next();
   }
+
+  app.use(cors(corsMiddleware))
 
 const corsOptions={
     // origin: ["http://localhost:5173"],
