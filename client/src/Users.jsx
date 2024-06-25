@@ -31,13 +31,11 @@ export default function Users() {
         // Display loading indicator while fetching data
         if (loading) {
             return (
-                <div className="container-fluid">
-                    <div className="row justify-content-center mt-5">
-                        <div className="col-md-8 text-center">
-                            <h2>Loading...</h2>
-                        </div>
-                    </div>
+                <div className="d-flex vh-100 justify-content-center align-items-center">
+                <div className="text-center">
+                    <h2>Loading...</h2>
                 </div>
+            </div>
             );
         }
     return (
