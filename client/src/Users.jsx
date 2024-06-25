@@ -8,15 +8,15 @@ export default function Users() {
     const API = `https://mern-curd-website.onrender.com`;
 
     useEffect(() => {
-        axios.get(`${API}`)
-        .then(result => {
-            setUsers(result.data);
-            setLoading(false); // Turn off loading indicator once data is fetched
-        })
-        .catch(err => {
-            console.log(err);
-            setLoading(false); // Turn off loading indicator in case of error
-        });
+        axios.get(API)
+            .then(result => {
+                setUsers(result.data);
+                setLoading(false); // Turn off loading indicator once data is fetched
+            })
+            .catch(err => {
+                console.log(err);
+                setLoading(false); // Turn off loading indicator in case of error
+            });
     }, []);
 
     const handleDelete = (id) => {
@@ -28,53 +28,31 @@ export default function Users() {
             .catch(err => console.log(err));
     }
 
-        // Display loading indicator while fetching data
-        if (loading) {
-            return (
-                <div className="d-flex vh-100 justify-content-center align-items-center">
+    if (loading) {
+        return (
+            <div className="d-flex vh-100 justify-content-center align-items-center">
                 <div className="text-center">
                     <h2>Loading...</h2>
                 </div>
             </div>
-            );
-        }
+        );
+    }
 
-
-        if (users.length === 0) {
-            return (
-                <div className="container-fluid">
-                    <div className="row justify-content-center mt-3 ">
-                        <div className='col-md-8 '>
-                            <div className='card mb-4'>
-                                <div className='card-header bg-primary text-white'>
-                                    <h5 className='card-title'>User Management</h5>
-                                </div>
-                                <div className='card-body'>
-                                    <Link to="/create" className='btn btn-success mb-3'>Add User</Link>
-                                    <div className='text-center'>
-                                        <p>No users found.</p>
-                                    </div>
-                                </div>
-                            </div>
-                    <Link  to="https://github.com/Bhut-Meet/MERN-Curd-Website"><button type="button" className="btn btn-primary">Project Code</button></Link>
+    return (
+        <div className="container-fluid">
+            <div className="row justify-content-center mt-3">
+                <div className='col-md-8'>
+                    <div className='card'>
+                        <div className='card-header bg-primary text-white'>
+                            <h5 className='card-title'>User Management</h5>
                         </div>
-                    </div>
-                    {/* <Link to="https://github.com/Bhut-Meet/MERN-Curd-Website">Project Code</Link> */}
-                </div>
-            );
-        }
-    
-        return (
-            <>
-            <div className="container-fluid">
-                <div className="row justify-content-center mt-3">
-                    <div className='col-md-8'>
-                        <div className='card'>
-                            <div className='card-header bg-primary text-white'>
-                                <h5 className='card-title'>User Management</h5>
-                            </div>
-                            <div className='card-body'>
-                                <Link to="/create" className='btn btn-success mb-3'>Add User</Link>
+                        <div className='card-body'>
+                            <Link to="/create" className='btn btn-success mb-3'>Add User</Link>
+                            {users.length === 0 ? (
+                                <div className='text-center'>
+                                    <p>No users found.</p>
+                                </div>
+                            ) : (
                                 <div className='table-responsive'>
                                     <table className='table table-dark table-bordered table-striped text-center'>
                                         <thead>
@@ -102,12 +80,16 @@ export default function Users() {
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
-            </>
-        );
-    }
-
+            <div className="row justify-content-center mt-3">
+                <div className='col-md-8'>
+                    <Link to="https://github.com/Bhut-Meet/MERN-Curd-Website" className="btn btn-primary">Project Code</Link>
+                </div>
+            </div>
+        </div>
+    );
+}
