@@ -12,13 +12,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/crud", {
     // useUnifiedTopology: true,
 });
 
-// Define CORS options
-const corsOptions = {
-    origin: "https://mern-curd-website.vercel.app", // Replace with your Vercel domain
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    credentials: true,
-};
-
 // CORS middleware function
 function corsMiddleware(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,6 +19,15 @@ function corsMiddleware(req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next();
 }
+
+
+// Define CORS options
+const corsOptions = {
+    origin: "https://mern-curd-website.vercel.app", // Replace with your Vercel domain
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    credentials: true,
+};
+
 
 app.use(express.json());
 app.use(cors(corsOptions));
