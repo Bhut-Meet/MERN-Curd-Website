@@ -14,10 +14,11 @@ if(process.env.MONGODB_URI){
     mongodbUrl=process.env.MONGODB_URI;
     }
 function corsMiddleware(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://mern-curd-website.vercel.app'); // Replace with your Vercel domain
-    res.setHeader('Access-Control-Allow-Methods', "GET", "HEAD","PUT","PATCH","POST","DELETE"); // Common HTTP methods
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Common allowed headers
-    next();
+
+    headers (
+        "Access-Control-Allow-Origin", "*",
+        "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS");
+      
   }
 
 
