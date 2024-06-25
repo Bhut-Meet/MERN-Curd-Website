@@ -3,14 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const UserModel = require('./models/Users'); // Adjust the path as necessary
-
+const connectDb = require("./utils/db");
 const app = express();
 
-// Connect to MongoDB database
-mongoose.connect("mongodb://127.0.0.1:27017/crud", {
-    // useNewUrlParser: true,
-    // useUnifiedTopology: true,
-});
+
 
 // CORS middleware function
 // function corsMiddleware(req, res, next) {
