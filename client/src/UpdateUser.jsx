@@ -29,7 +29,7 @@ export default function UpdateUser() {
 
     const handleUpdate = (e) =>{
         e.preventDefault();
-        axios.put(`${API}/updateUser/`+id , {name, email, age})
+        axios.put(`${API}/updateUser/`+id , {name, email, age,password})
         .then(result => {
             console.log(result)
             navigate('/')
