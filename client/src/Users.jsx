@@ -4,12 +4,19 @@ import { Link } from 'react-router-dom';
 
 export default function Users() {
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true); // State to manage loading indicator
     const API = `https://mern-curd-website.onrender.com`;
 
     useEffect(() => {
         axios.get(`${API}`)
-            .then(result => setUsers(result.data))
-            .catch(err => console.log(err));
+        .then(result => {
+            setUsers(result.data);
+            setLoading(false); // Turn off loading indicator once data is fetched
+        })
+        .catch(err => {
+            console.log(err);
+            setLoading(false); // Turn off loading indicator in case of error
+        });
     }, []);
 
     const handleDelete = (id) => {
@@ -21,6 +28,18 @@ export default function Users() {
             .catch(err => console.log(err));
     }
 
+        // Display loading indicator while fetching data
+        if (loading) {
+            return (
+                <div className="container-fluid">
+                    <div className="row justify-content-center mt-5">
+                        <div className="col-md-8 text-center">
+                            <h2>Loading...</h2>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
     return (
         <div className="container-fluid">
             <div className="row justify-content-center mt-3">
