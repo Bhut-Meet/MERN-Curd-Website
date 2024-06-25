@@ -58,7 +58,7 @@ export default function UpdateUser() {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
-                                    <input type="password" id="password" className="form-control" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                    <input type="text" id="password" className="form-control" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                 </div>
                                 <button type="submit" className="btn btn-success">Update</button>
                             </form>
